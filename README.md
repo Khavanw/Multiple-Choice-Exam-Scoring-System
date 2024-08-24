@@ -41,8 +41,36 @@ In this exam template, we have 120 questions divided into 4 columns. Each column
 
 ![Answer](results/img_threshold.jpg)
 ### Match and Visualize
-After obtaining the list of answers chosen by the candidates, we proceed to match the answers to determine the score. We also perform visualization on the screen, where correctly marked answer boxes are highlighted in green and incorrectly marked ones in red, including any invalid boxes as follows
+After obtaining the list of answers chosen by the candidates, we proceed to match the answers to determine the score. We also perform visualization on the screen, where correctly marked answer boxes are highlighted in green and incorrectly marked ones in red, including any invalid boxes as follows.
 
-![Result]()
+![Result](images_results_score.png)
 ### Process Candidate Number and Exam Code Blocks
+Similarly to the processing of the answer blocks, we proceed with a similar approach to extract the candidate number and exam code. However, in this step, we will not crop out excess areas as before. Instead, we only need to divide the blocks by height and width to extract the information and store it in a matrix to achieve the desired results.
+
+![Candiate1](images/img_stu_code.jpg)
+![Candiate2](images/img_stu_code_thres.jpg)
+![Candiate3](images/img_top_code.jpg)
+![Candiate4](images/img_top_code_thres.jpg)
 ### Save Results
+In this final step, we save the results to a text file, including the candidate number, exam code, score, and the matching results for each question.
+
+```result.txt```
+## Requirements
+- Python 3.x
+- OpenCV
+- Numpy
+
+```bash
+pip install -r requirements.txt
+```
+## How to use my code
+- Clone this repository:
+```bash
+https://github.com/Khavanw/Multiple-Choice-Exam-Scoring-System.git
+```
+- Prepare the answer sheet images and answer key file
+- Run the main script:
+```bash
+python src/main.py
+```
+Modify the answers if needed in the `main.py` file.
