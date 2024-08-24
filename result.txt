@@ -1,0 +1,3 @@
+Ma so sinh vien: 439776
+Ma de: 001
+Diem = 8.75
