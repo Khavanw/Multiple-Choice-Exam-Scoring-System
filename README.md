@@ -22,15 +22,24 @@ In this project, we apply the OpenCV image processing library to address the pro
 ### Dataset
 The input images in the automated scoring process are scanned images of actual high school multiple-choice answer sheets. These images typically contain information about the questions and the answer bubbles filled in by the students. The images may be either color or grayscale, depending on the scanner settings.
 
-![phieuthi](phieuthi.png)
+<p align="center">
+  <img src="phieuthi.png"><br/>
+  <i>Input images have a size of 640x480</i>
+</p>
+
 ### Image Preprocessing
 1. Resize: Although the input images are scanned and have a fixed size, in this model, we will resize the images to 640x480 for convenience in subsequent processing steps
 2. Convert to Grayscale
 3. Thresholding
+
 ### Identify Areas to Process
 After finding the contours in the image, the next step is to identify the answer blocks, candidate number, and exam code blocks. Thus, we need to identify 6 boxes present in the image
 
-![Areas](results/img_box_contour.jpg)
+<p align="center">
+  <img src="results/img_box_contour.jpg"><br/>
+  <i>Boxes to be processed</i>
+</p>
+
 ### Process Answer Blocks
 In this exam template, we have 120 questions divided into 4 columns. Each column contains 6 boxes, each box contains 5 questions. For each question, there are 4 answer choices: 'A', 'B', 'C', 'D'. After understanding the general input structure, I divide the solution into the following steps:
 
@@ -39,18 +48,32 @@ In this exam template, we have 120 questions divided into 4 columns. Each column
 - Identify the chosen answer for each question: 
     - Use pixel-level processing techniques on the objects to determine the marked answer box for each question
 
-![Answer](results/img_threshold.jpg)
+<p align="center">
+  <img src="results/img_threshold.jpg"><br/>
+  <i>Answer blocks after thresholding</i>
+</p>
+
 ### Match and Visualize
 After obtaining the list of answers chosen by the candidates, we proceed to match the answers to determine the score. We also perform visualization on the screen, where correctly marked answer boxes are highlighted in green and incorrectly marked ones in red, including any invalid boxes as follows.
 
-![Result](images_results_score.png)
+<p align="center">
+  <img src="images_results_score.png"><br/>
+  <i>Visualize the answers</i>
+</p>
+
 ### Process Candidate Number and Exam Code Blocks
 Similarly to the processing of the answer blocks, we proceed with a similar approach to extract the candidate number and exam code. However, in this step, we will not crop out excess areas as before. Instead, we only need to divide the blocks by height and width to extract the information and store it in a matrix to achieve the desired results.
 
-![Candiate1](images/img_stu_code.jpg)
-![Candiate2](images/img_stu_code_thres.jpg)
-![Candiate3](images/img_top_code.jpg)
-![Candiate4](images/img_top_code_thres.jpg)
+<p align="center">
+  <img src="images/img_stu_code.jpg" width="75" style="display: inline-block; margin: 0 10px;">
+  <img src="images/img_stu_code_thres.jpg" width="75" style="display: inline-block; margin: 0 10px;">
+  <img src="images/img_top_code.jpg" width="75" style="display: inline-block; margin: 0 10px;">
+  <img src="images/img_top_code_thres.jpg" width="75" style="display: inline-block; margin: 0 10px;">
+</p>
+<p align="center">
+  <i>Image processing on candidate number and exam code blocks</i>
+</p>
+
 ### Save Results
 In this final step, we save the results to a text file, including the candidate number, exam code, score, and the matching results for each question.
 
